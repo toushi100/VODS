@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Homeapp',
     "bootstrap4",
+    "Videoapp"
 
 ]
 
