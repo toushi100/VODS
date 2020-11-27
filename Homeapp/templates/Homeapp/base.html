@@ -28,9 +28,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'about'%}">About</a></li>
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/admin">Admin</a></li>
+                            {% endif %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'dashboard'  %}">{{user.username}}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout'  %}">Log out</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'register'  %}">Register</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/admin">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login'  %}">Log In</a></li>
+                        {% endif %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'about'%}">About</a></li>
+                        
+                        
                     </ul>
                 </div>
             </div>

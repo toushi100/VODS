@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib import messages
 from .forms import UserResgisterForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,6 +20,6 @@ def register(request):
 
 
 
-
+@login_required
 def dashboard(request):
-    return HttpResponse("dashboard")
+    return render(request, 'Usersapp/dashboard.html')
