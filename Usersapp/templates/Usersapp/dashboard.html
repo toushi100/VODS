@@ -1,4 +1,24 @@
 {% extends 'Homeapp/base.html' %}
 {% block content %}
-{{user.username}}
+<section class="about-section text-center  " id="about">
+    <div class="container">
+        <div class="">
+            <div class="col-lg-8 mx-auto py-5">
+                <div class="container border p-5">
+            
+                    <div class="content-section text-white">
+                        <div class="media">
+                            <img class="rounded-circle " src="{{ user.profile.image.url }}"/>
+                            <div class="media-body">
+                                <h2 class="account-heading">{{user.username}}</h2>
+                                <p class="text-secondary">{{user.email}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}
