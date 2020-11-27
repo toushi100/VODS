@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'Homeapp',
     "bootstrap4",
     "Videoapp",
-    "Usersapp"
+    "Usersapp",
+    "crispy_forms"
 
 ]
 
@@ -129,3 +130,5 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
