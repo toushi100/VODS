@@ -1,6 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib import messages
 from .forms import UserResgisterForm
+
+
+
 def register(request):
     if request.method == 'POST':
         form = UserResgisterForm(request.POST)
@@ -12,6 +15,10 @@ def register(request):
     else:
         form = UserResgisterForm()
     return render (request, 'Usersapp/register.html', {'form':form})
+
+
+
+
 
 def dashboard(request):
     return HttpResponse("dashboard")
