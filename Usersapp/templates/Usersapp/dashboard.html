@@ -1,11 +1,11 @@
 {% extends 'Homeapp/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 <section class="about-section text-center  " id="about">
     <div class="container">
         <div class="">
             <div class="col-lg-8 mx-auto py-5">
                 <div class="container border p-5">
-            
                     <div class="content-section text-white">
                         <div class="media">
                             <img class="rounded-circle " src="{{ user.profile.image.url }}"/>
@@ -16,6 +16,19 @@
                         </div>
                     </div>
                 </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token%}
+                    <feiledset class="form-group text-white">
+                    <legend class="border-bottom mb-4">Profile information</legend>
+                    {{u_form | crispy }}
+                    {{p_form | crispy }}
+
+                    </feiledset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit"> Save Changes</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

@@ -1,12 +1,25 @@
 {% extends 'Homeapp/base.html'%}
 {% block content%}
+{% load crispy_forms_tags %}
 
 <section class="about-section text-center" id="about">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="container">
-                    <h1 class="text-white mb-4 text center"> Upload</h1>
+                    <h1 class="text-white mb-4 text center"> Upload a Video</h1>
+                    <div class="content- section">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token%}
+                            <feiledset class="form-group text-white">
+                            <legend class="border-bottom mb-4">fill out the information</legend>
+                            {{form | crispy }}
+                            </feiledset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit"> Sign UP</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
