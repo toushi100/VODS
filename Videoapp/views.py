@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import VideoCreationForm
+from .models import Video
+from django.views.generic import  DetailView
 
-
+   
 
 @login_required
 def upload(request):
@@ -19,5 +21,11 @@ def upload(request):
     return render(request,'Videoapp/upload.html',{'form':form})
 
 
-def show(request):
-    return render(request,'Videoapp/upload.html')
+def index(request):
+    videos = Video.objects.all()
+    return render(request,'Videoapp/index.html',{'videos':videos})
+
+class show(DetailView):
+    model = Video
+    template_name = 'Videoapp/show.html'
+    

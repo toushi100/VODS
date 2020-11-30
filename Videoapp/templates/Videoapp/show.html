@@ -1,0 +1,29 @@
+{% extends 'Homeapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="about-section text-center" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="container text-white">
+                    <video id="my-video" width="100%"   controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag
+                    </video>
+                    <div class="container">
+                        <h3>{{video.name}}</h3>
+                            {% if user.is_authenticated %}
+                                {% if user.id == video.user %}
+                                   
+                                {% endif %}
+                            {% endif %}
+                        <div class="container">
+                            <p>{{video.description}}</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

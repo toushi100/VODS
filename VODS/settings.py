@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'Homeapp',
     "Videoapp",
     "Usersapp",
-    "crispy_forms"
-
+    "crispy_forms",
+    
 ]
 
 MIDDLEWARE = [
