@@ -28,4 +28,7 @@ def index(request):
 class show(DetailView):
     model = Video
     template_name = 'Videoapp/show.html'
-    
+
+def video():
+    video = Video.video
+    return video
