@@ -35,10 +35,12 @@
     </div>
 </section>
 <section class="signup-section" id="signup">
-    <div class="container">
+    <div class="container  text-white">
+        {% if uservideos.count == 0 %}
         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-        <h2 class="text-white mb-5">video</h2>
-        {% if uservideos.has_next %}
+        <h2 class="text-white mb-5">Oops</h2>
+        <small>No Vidieos Yet :(</small>
+        {% endif %}
         {% for video in uservideos %}
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto text-center">
@@ -48,17 +50,13 @@
                             src="{% static 'Homeapp/img/placeholder.png' %}"></a>
                 </div>
                 <div class="flex-top">
-                    <h3><a class=" " href="{% url 'show' video.id %}">{{video.name}}</a></h3>
+                    <h3><a class="" href="{% url 'show' video.id %}">{{video.name}}</a></h3>
                     <small>Uploaded on {{video.uploaded_at}}</small>
                 </div>
             </div>
         </div>
         
         {% endfor %}
-        {% else %}
-        <h2 class="text-white mb-5">OOPS</h2>
-        <small>On videos to show yet :(</small>
-        {% endif %}
     </div>
 </section>
 {% endblock content %}

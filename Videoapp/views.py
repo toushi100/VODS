@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import VideoCreationForm
 from .models import Video
 from django.views.generic import  DetailView,DeleteView
+from django.contrib import messages
+
 
    
 
@@ -29,12 +31,25 @@ class show(DetailView):
     model = Video
     template_name = 'Videoapp/show.html'
 
-class delete(DeleteView):
+"""class delete(DeleteView):
     model = Video
     success_url = '/'
-
     def test_func(self):
         video = self.get_object()
         if self.request.user == video.user:
             return True
         return False  
+    
+    def messages(request):
+        messages.success(request, f' the {vidoe.name} has been deleted successfully')"""
+
+def delete(request, id):  
+    context ={} 
+    obj = get_object_or_404(Video, id = id) 
+    if request.method =="POST": 
+        obj.delete() 
+        messages.success(request, f' the {vidoe.name} has been deleted successfully')
+        return HttpResponseRedirect("/") 
+  
+    return render(request, context) 
+        
