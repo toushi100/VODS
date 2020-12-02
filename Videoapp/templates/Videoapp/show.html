@@ -8,14 +8,16 @@
             <div class="col-lg-8 mx-auto">
                 <div class="container text-white">
                     <video id="my-video" width="100%"   controls>
-                        <source src="{{video}}" type="video/mp4">
+                        <source src="{{video.video.url}}" type="video/mp4">
                         Your browser does not support the video tag
                     </video>
                     <div class="container">
                         <h3>{{video.name}}</h3>
                             {% if user.is_authenticated %}
-                                {% if user.id == video.user %}
-                                   
+                                {% if request.user == video.user %}
+                                <form method="post">{% csrf_token %}
+                                    <input type="submit" class="btn btn-danger" value="Confirm">
+                                </form>
                                 {% endif %}
                             {% endif %}
                         <div class="container">
