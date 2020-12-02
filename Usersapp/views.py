@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib import messages
 from .forms import UserResgisterForm, UserUpdateForm,ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from Videoapp.models import Video
 
 
 
@@ -34,9 +35,11 @@ def dashboard(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm( instance=request.user.profile)
+    uservideos = Video.objects.filter(user= request.user)
     context = {
         'u_form':u_form,
-        'p_form':p_form
+        'p_form':p_form,
+        'uservideos': uservideos,
 
     }
     return render(request, 'Usersapp/dashboard.html', context)
