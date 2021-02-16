@@ -1,34 +1,28 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
-<section class="about-section " id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <div class="container text-white">
-                    <video id="my-video" width="100%"   controls>
-                        <source src="{{video.video.url}}" type="video/mp4">
-                        Your browser does not support the video tag
-                    </video>
-            </div>
-        </div>
-        
+<section class="about-section" id="about">
+    <div class="container text-white mx-auto py-5">
+        <div class="row mx-auto">
+            <video id="my-video" width="100%" controls>
+            <source src="{{video.video.url}}" type="video/mp4">
+            Your browser does not support the video tag
+        </video>
     </div>
-    <div class="container text-left text-white">
-        <h3  class="text-left">{{video.name}}</h3>
-        <p  class="text-left">{{video.description}}</p>
-
+        <div class="row text-white mt-5">
+            <div class="col-10">
+                <h3>{{video.name}}</h3>
+                <p>{{video.description}}</p>
+            </div>
             {% if user.is_authenticated %}
-                {% if request.user == video.user %}
-                <form method="POST" class="text-right " >
-                    {% csrf_token %}
-                        <button class="btn btn-danger text-right" type="submit">Delete</button>
-                </form>
-                {% endif %}
+            {% if request.user == video.user %}
+            <form method="POST" class="text-right col-2">
+                {% csrf_token %}
+                <button class="btn btn-danger text-right" type="submit">Delete</button>
+            </form>
             {% endif %}
-        
-        
-</div>
+            {% endif %}
+        </div>
     </div>
 </section>
 {% endblock content %}
