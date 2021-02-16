@@ -2,23 +2,25 @@
 {% load static %}
 {% block content %}
 <section class="about-section" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="container ">
-                {% for video in videos %}
-                <div class="row  my-2">
-                    <div class="content ">
-                        <a href="{% url 'show' video.id %}"><img class="mx-3 " style="width:17em; height:10em"
-                                src="{% static 'Homeapp/img/placeholder.png' %}"></a>
-                    </div>
-                    <div class="mt-2 text-white">
-                        <h3 class=" "><a  href="{% url 'show' video.id %}">{{video.name}}</a></h3>
-                        <small class="  ">Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
-                    </div>
+    <div class="container py-5">
+        {% for video in videos %}\
+        <div class="card w-100 bg-dark p-3">
+            <div class="row">
+                <div class="content">
+                    <a
+                        href="{% url 'show' video.id %}"><img class="mx-3 " style="width:17em; height:10em"
+                        src="{% static 'Homeapp/img/placeholder.png' %}"
+                    ></a>
                 </div>
-                {% endfor %}
+                <div class="text-white ml-3 mt-2">
+                    <h3>
+                        <a  href="{% url 'show' video.id %}">{{video.name}}</a>
+                    </h3>
+                    <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock content %}
