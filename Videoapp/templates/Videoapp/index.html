@@ -1,23 +1,22 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
-<section class="about-section text-center" id="about">
+<section class="about-section" id="about">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <div class="container text-white">
-                        {% for video in videos %}
-                            <div class="row ml-1 my-1">
-                                <div class="content">
-                                    <a href=""><img style="width:17em; height:10em" src="{% static 'Homeapp/img/placeholder.png' %}"></a>
-                                </div>
-                                <div class="flex-top">
-                                    <h3 ><a class=" " href="{% url 'show' video.id %}">{{video.name}}</a></h3>
-                                    <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
-                                </div>
-                            </div>
-                        {% endfor %} 
+            <div class="container text-white">
+                {% for video in videos %}
+                <div class="row ml-1 my-1">
+                    <div class="content">
+                        <a href=""><img style="width:17em; height:10em"
+                                src="{% static 'Homeapp/img/placeholder.png' %}"></a>
+                    </div>
+                    <div class="">
+                        <h3><a class=" " href="{% url 'show' video.id %}">{{video.name}}</a></h3>
+                        <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
