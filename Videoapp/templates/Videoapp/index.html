@@ -4,16 +4,16 @@
 <section class="about-section" id="about">
     <div class="container">
         <div class="row">
-            <div class="container text-white">
+            <div class="container ">
                 {% for video in videos %}
-                <div class="row ml-1 my-1">
-                    <div class="content">
-                        <a href=""><img style="width:17em; height:10em"
+                <div class="row  my-2">
+                    <div class="content ">
+                        <a href="{% url 'show' video.id %}"><img class="mx-3 " style="width:17em; height:10em"
                                 src="{% static 'Homeapp/img/placeholder.png' %}"></a>
                     </div>
-                    <div class="">
-                        <h3><a class=" " href="{% url 'show' video.id %}">{{video.name}}</a></h3>
-                        <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
+                    <div class="mt-2 text-white">
+                        <h3 class=" "><a  href="{% url 'show' video.id %}">{{video.name}}</a></h3>
+                        <small class="  ">Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
                     </div>
                 </div>
                 {% endfor %}
