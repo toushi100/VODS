@@ -5,5 +5,5 @@ urlpatterns = [
     path('',views.index, name= "index"),
     path('upload/',views.upload, name= "upload"),
     path('show/<int:pk>',views.show.as_view(),name= "show"),
-    path('post/<id>/delete', views.delete, name='delete'),
+    
 ]

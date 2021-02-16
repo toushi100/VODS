@@ -3,8 +3,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import VideoCreationForm
 from .models import Video
-from django.views.generic import  DetailView,DeleteView
+from django.views import  View
+from django.views.generic import  DetailView
+from django.urls import reverse
 from django.contrib import messages
+import os
 
 
    
@@ -27,29 +30,29 @@ def index(request):
     videos = Video.objects.all()
     return render(request,'Videoapp/index.html',{'videos':videos})
 
-class show(DetailView):
+class show(DetailView,View):
     model = Video
     template_name = 'Videoapp/show.html'
-
-"""class delete(DeleteView):
-    model = Video
     success_url = '/'
-    def test_func(self):
-        video = self.get_object()
-        if self.request.user == video.user:
-            return True
-        return False  
+    def post(request,self,pk):
+        print(request)
+        video = get_object_or_404(Video, id = pk) 
+        os.remove("/home/ahmed/Desktop/VODS/media/{}".format(video.video))
+        video.delete()
+        return HttpResponseRedirect(reverse('index'))
+  
     
-    def messages(request):
-        messages.success(request, f' the {vidoe.name} has been deleted successfully')"""
+        
+    
+    """
 
 def delete(request, id):  
     context ={} 
     obj = get_object_or_404(Video, id = id) 
     if request.method =="POST": 
         obj.delete() 
-        messages.success(request, f' the {vidoe.name} has been deleted successfully')
-        return HttpResponseRedirect("/") 
+        messages.success(request, f' the {video.name} has been deleted successfully')
+        return render(redirect, 'Videoapp/video_confirm_delete.html') 
   
-    return render(request, context) 
-        
+    return render(request,'Videoapp/index.html') 
+        """
