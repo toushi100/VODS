@@ -1,7 +1,7 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
-<section class="about-section text-center" id="about">
+<section class="about-section " id="about">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
@@ -10,29 +10,25 @@
                         <source src="{{video.video.url}}" type="video/mp4">
                         Your browser does not support the video tag
                     </video>
-                    <div class="container">
-                        <h3>{{video.name}}</h3>
-                            {% if user.is_authenticated %}
-                                {% if request.user == video.user %}
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <fieldset class="form-group">
-                                        <legend class="border-bottom mb-4">Delete Post</legend>
-                                        <h2>Are you sure you want to delete the post "{{video.name}}"</h2>
-                                    </fieldset>
-                                    <div class="form-group">
-                                        <button class="btn btn-danger" type="submit">Yes, Delete</button>
-                                        <a class="btn btn-success" href="#">Back to Safety?</a>
-                                    </div>
-                                </form>
-                                {% endif %}
-                            {% endif %}
-                        <div class="container">
-                            <p>{{video.description}}</p>
-                        </div>
-                </div>
             </div>
         </div>
+        
+    </div>
+    <div class="container text-left text-white">
+        <h3  class="text-left">{{video.name}}</h3>
+        <p  class="text-left">{{video.description}}</p>
+
+            {% if user.is_authenticated %}
+                {% if request.user == video.user %}
+                <form method="POST" class="text-right " >
+                    {% csrf_token %}
+                        <button class="btn btn-danger text-right" type="submit">Delete</button>
+                </form>
+                {% endif %}
+            {% endif %}
+        
+        
+</div>
     </div>
 </section>
 {% endblock content %}

@@ -7,7 +7,7 @@ from embed_video.fields import EmbedVideoField
 class Video(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     video = models.FileField(upload_to='Videos')
-    name = models.TextField(max_length=150)
+    name = models.TextField(max_length=50)
     description = models.TextField(max_length=1000)
     uploaded_at = models.DateTimeField(auto_now=True, null=True)
 
