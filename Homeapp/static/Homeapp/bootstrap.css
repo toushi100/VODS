@@ -5093,6 +5093,7 @@ a.badge-black:focus, a.badge-black.focus {
 
 .media-body {
   flex: 1;
+  align-self: center;
 }
 
 .list-group {

@@ -4,57 +4,54 @@
 {% load crispy_forms_tags %}
 <section class="about-section" id="about">
     <div class="container">
-        <div class="">
-            <div class="col-lg-8 mx-auto py-5">
-                <div class="container border p-5">
-                    <div class="content-section text-white">
-                        <div class="media">
-                            <img class="rounded-circle " src="{{ user.profile.image.url }}" />
-                            <div class="media-body">
-                                <h2 class="account-heading">{{user.username}}</h2>
-                                <p class="text-secondary">{{user.email}}</p>
-                            </div>
+        <div class="col-lg-8 mx-auto py-5">
+                <div class="content-section border text-white p-5 mb-4">
+                    <div class="media">
+                        <img class="rounded-circle mr-5" src="{{ user.profile.image.url }}" width="150" height="150" />
+                        <div class="media-body">
+                            <h2 class="account-heading">{{user.username}}</h2>
+                            <p class="text-secondary">{{user.email}}</p>
                         </div>
                     </div>
                 </div>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token%}
-                    <feiledset class="form-group text-white">
-                        <legend class="border-bottom mb-4">Profile information</legend>
-                        {{u_form | crispy }}
-                        {{p_form | crispy }}
-
-                    </feiledset>
-                    <div class="form-group text-right">
-                        <button class="btn btn-outline-info" type="submit"> Save Changes</button>
-                    </div>
-                </form>
-
-            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token%}
+                <fieldset class="form-group text-white">
+                    <legend class="border-bottom mb-4">Profile information</legend>
+                    {{u_form | crispy }}
+                    {{p_form | crispy }}
+                </fieldset>
+                <div class="form-group text-right">
+                    <button class="btn btn-outline-info" type="submit">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>
-<section class="signup-section" id="signup">
-    <div class="container  text-white">
+<section class="signup-section" id="about">
+    <div class="container text-white">
         {% if uservideos.count == 0 %}
         <i class="far fa-paper-plane fa-2x mb-2 text-center text-white"></i>
         <h2 class="text-white ">Oops</h2>
         <small>No Vidieos Yet :(</small>
         {% endif %}
         {% for video in uservideos %}
-        <div class="row my-2">
-           
+        <div class="card w-100 bg-dark p-3 my-3">
+            <div class="row">
                 <div class="content">
-                    <a href="{% url 'show' video.id %}"><img class="mx-3 "style="width:17em; height:10em"
-                            src="{% static 'Homeapp/img/placeholder.png' %}"></a>
+                    <a
+                        href="{% url 'show' video.id %}"><img class="mx-3 " style="width:17em; height:10em"
+                        src="{% static 'Homeapp/img/placeholder.png' %}"
+                    ></a>
                 </div>
-                <div class="mt-2 text-white">
-                    <h3 class=" "><a  href="{% url 'show' video.id %}">{{video.name}}</a></h3>
-                    <small class="  ">Uploaded on {{video.uploaded_at}} </small>
+                <div class="text-white ml-3 mt-2">
+                    <h3>
+                        <a  href="{% url 'show' video.id %}">{{video.name}}</a>
+                    </h3>
+                    <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
                 </div>
             </div>
-        
-        
+        </div>        
         {% endfor %}
     </div>
 </section>
