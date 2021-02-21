@@ -14,3 +14,6 @@ class Video(models.Model):
     def __str__(self):
         return f'{self.name} by the user {self.user.username}'
     
+class Object(models.Model):
+    video = models.ForeignKey(Video,on_delete=models.CASCADE)
+    obj = models.TextField()
