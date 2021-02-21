@@ -16,7 +16,6 @@ class Video(models.Model):
         return f'{self.name} by the user {self.user.username}'
     
     def save(self):
-        super().save()
         video = self.video
         print(video)
         video = '/home/ahmed/Desktop/VODS/media/'+str(video)
