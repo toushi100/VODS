@@ -15,11 +15,9 @@ class Video(models.Model):
     def __str__(self):
         return f'{self.name} by the user {self.user.username}'
     
-<<<<<<< HEAD
 class Object(models.Model):
     video = models.ForeignKey(Video,on_delete=models.CASCADE)
     obj = models.TextField()
-=======
     def save(self):
         video = self.video
         print(video)
@@ -29,4 +27,3 @@ class Object(models.Model):
         print('script ran successfully')
         output = output.stdout.decode()
         print(output[0:6])
->>>>>>> 958e9e79abeabfe61b6b561fc48ca2afbb3e346c
