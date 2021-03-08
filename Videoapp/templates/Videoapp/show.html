@@ -1,9 +1,13 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
+{% load crispy_forms_tags %}
 <section class="about-section" id="about">
     <div class="container text-white mx-auto py-5">
+
+        
         <div class="row mx-auto">
+            
             <video id="my-video" width="100%" controls>
             <source src="{{video.video.url}}" type="video/mp4">
             Your browser does not support the video tag
@@ -18,11 +22,23 @@
             {% if request.user == video.user %}
             <form method="POST" class="text-right col-2">
                 {% csrf_token %}
-                <button class="btn btn-danger text-right" type="submit">Delete</button>
+                <input class="btn btn-danger text-right" name="delete" type="submit" value="Delete"/>
             </form>
             {% endif %}
             {% endif %}
+            
         </div>
     </div>
 </section>
+<form method="POST"  action = ""class="text-right">
+    {% csrf_token %}
+    
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+      <div class="searchbar">
+        <input class="search_input"  id="search" type="text" placeholder="Search..."/>
+        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>      </div>
+    </div>
+  </div> 
+</form>
 {% endblock content %}

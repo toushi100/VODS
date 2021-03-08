@@ -16,9 +16,7 @@ def create_profile(sender,instance,created,**kwargs):
         output = subprocess.run(['/home/ahmed/Desktop/SSD/tagroba.py',video])
         with open(path, 'rb') as handle:
             b = pickle.load(handle)
-        print(b)
         b = json.dumps(b)
-        print("adadadsasdasdadsasdadadadsasd",b)
         VideoObject.objects.create(video = instance ,obj = b)
     if not created:
         instance.Videobject.save()
@@ -37,7 +35,7 @@ class Video(models.Model):
         super(Video, self).save(*args, **kwargs)
         
 post_save.connect(create_profile,sender = Video)
-print('save is done')
+
 
                 
     
