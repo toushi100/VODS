@@ -43,7 +43,12 @@ class show(DetailView, View):
         return render(request, self.template_name, {'video':video})
 
     def post(request, self, *args, **kwargs):
-        video = get_object_or_404(Video, id=pk)
-        os.remove("/home/ahmed/Desktop/VODS/media/{}".format(video.video))
-        video.delete()
-        return HttpResponseRedirect(reverse_lazy(success_url))
+        if  self.POST.get("delete"):
+            video = get_object_or_404(Video, id=pk)
+            os.remove("/home/ahmed/Desktop/VODS/media/{}".format(video.video))
+            video.delete()
+        if  self.POST.get("search"):
+            if  self.POST.get("word"):
+                word = self.POST.get("word")
+                print(word)
+        return HttpResponseRedirect(reverse_lazy('home'))
