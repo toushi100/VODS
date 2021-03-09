@@ -12,11 +12,12 @@
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token%}
                             <feiledset class="form-group text-white">
-                            <legend class="border-bottom mb-4">fill out the information</legend>
-                            {{form | crispy }}
+                                <legend class="border-bottom mb-4">fill out the information</legend>
+                                {{form | crispy }}
                             </feiledset>
                             <div class="form-group text-right">
-                                <button class="btn btn-outline-info" type="submit">Upload</button>
+                                <button class="btn btn-outline-info" onclick="disable()" id="upload"
+                                    type="submit">Upload</button>
                             </div>
                         </form>
                     </div>
@@ -25,4 +26,12 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+    function disable() {
+        setTimeout(() => {document.getElementById("upload").disabled = true; }, 10);
+        
+
+    }
+</script>
 {% endblock content %}

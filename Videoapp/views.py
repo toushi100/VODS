@@ -3,12 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .forms import VideoCreationForm
-from .models import Video
+from .models import Video,VideoObject
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
 from django.contrib import messages
-import os
+import os ,json
 
 
 @login_required
@@ -34,7 +34,7 @@ def index(request):
 class show(DetailView, View):
     model = Video
     template_name = 'Videoapp/show.html'
-    success_url = '/'
+    success_url = 'home'
 
     
 
@@ -42,13 +42,21 @@ class show(DetailView, View):
         video = Video.objects.get(pk=self.kwargs['pk'])
         return render(request, self.template_name, {'video':video})
 
-    def post(request, self, *args, **kwargs):
-        if  self.POST.get("delete"):
-            video = get_object_or_404(Video, id=pk)
+    def post(self,request,  *args, **kwargs):
+        if  request.POST.get("delete"):
+            video = get_object_or_404(Video, id=self.kwargs['pk'])
             os.remove("/home/ahmed/Desktop/VODS/media/{}".format(video.video))
             video.delete()
-        if  self.POST.get("search"):
-            if  self.POST.get("word"):
-                word = self.POST.get("word")
-                print(word)
-        return HttpResponseRedirect(reverse_lazy('home'))
+            return HttpResponseRedirect(reverse_lazy(self.success_url))
+
+        if  request.POST.get("search"):
+            if  request.POST.get("word"):
+                word = request.POST.get("word")
+                video = get_object_or_404(Video, id=self.kwargs['pk'])
+                videoObject = VideoObject.objects.filter(video = video)
+                frames= videoObject[0].obj
+                frames_dict = json.loads(frames)
+                print(frames_dict)
+                print(frames_dict[word])
+                objectframes = frames_dict[word]
+                return render(request, self.template_name, {'video':video,'objectframes': objectframes})
