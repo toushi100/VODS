@@ -34,7 +34,7 @@ def index(request):
 class show(DetailView, View):
     model = Video
     template_name = 'Videoapp/show.html'
-    success_url = 'home'
+    success_url = 'index'
 
     
 
@@ -54,9 +54,7 @@ class show(DetailView, View):
                 word = request.POST.get("word")
                 video = get_object_or_404(Video, id=self.kwargs['pk'])
                 videoObject = VideoObject.objects.filter(video = video)
-                frames= videoObject[0].obj
+                frames = videoObject[0].obj
                 frames_dict = json.loads(frames)
-                print(frames_dict)
-                print(frames_dict[word])
                 objectframes = frames_dict[word]
                 return render(request, self.template_name, {'video':video,'objectframes': objectframes})

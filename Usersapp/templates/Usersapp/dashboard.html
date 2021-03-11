@@ -5,15 +5,15 @@
 <section class="about-section" id="about">
     <div class="container">
         <div class="col-lg-8 mx-auto py-5">
-                <div class="content-section border text-white p-5 mb-4">
-                    <div class="media">
-                        <img class="rounded-circle mr-5" src="{{ user.profile.image.url }}" width="150" height="150" />
-                        <div class="media-body">
-                            <h2 class="account-heading">{{user.username}}</h2>
-                            <p class="text-secondary">{{user.email}}</p>
-                        </div>
+            <div class="content-section border text-white p-5 mb-4">
+                <div class="media">
+                    <img class="rounded-circle mr-5" src="{{ user.profile.image.url }}" width="150" height="150" />
+                    <div class="media-body">
+                        <h2 class="account-heading">{{user.username}}</h2>
+                        <p class="text-secondary">{{user.email}}</p>
                     </div>
                 </div>
+            </div>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token%}
                 <fieldset class="form-group text-white">
@@ -22,7 +22,7 @@
                     {{p_form | crispy }}
                 </fieldset>
                 <div class="form-group text-right">
-                    <button class="btn btn-outline-info" type="submit">Save Changes</button>
+                    <button class="btn btn-outline-info" name="dashboard"type="submit">Save Changes</button>
                 </div>
             </form>
         </div>
@@ -33,26 +33,30 @@
         {% if uservideos.count == 0 %}
         <i class="far fa-paper-plane fa-2x mb-2 text-center text-white"></i>
         <h2 class="text-white ">Oops</h2>
-        <small>No Vidieos Yet :(</small>
+        <small>No Videos Yet :(</small>
         {% endif %}
         {% for video in uservideos %}
         <div class="card w-100 bg-dark p-3 my-3">
             <div class="row">
-                <div class="content">
-                    <a
-                        href="{% url 'show' video.id %}"><img class="mx-3 " style="width:17em; height:10em"
-                        src="{% static 'Homeapp/img/placeholder.png' %}"
-                    ></a>
-                </div>
-                <div class="text-white ml-3 mt-2">
+          
+                <div. class="content col-3">
+                    <a href="{% url 'show' video.id %}"><img class=" " style="width:17em; height:10em"
+                            src="{% static 'Homeapp/img/placeholder.png' %}"></a>
+                </div.>
+                <div class="text-white col-7 ml-3 ">
                     <h3>
-                        <a  href="{% url 'show' video.id %}">{{video.name}}</a>
+                        <a href="{% url 'show' video.id %}">{{video.name}}</a>
                     </h3>
                     <small>Uploaded on {{video.uploaded_at}} by {{video.user.username}}</small>
-                    
                 </div>
+           
+                <form method="POST" action="{% url 'show' video.id %}"class="col-1 ml-3 my-auto">
+                    {% csrf_token %}
+                    <input class="btn btn-danger text-right" name="delete" type="submit" value="Delete" />
+                </form>
             </div>
-        </div>        
+
+        </div>
         {% endfor %}
     </div>
 </section>
