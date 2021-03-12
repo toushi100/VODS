@@ -50,7 +50,14 @@ class VideoObject(models.Model):
             
             
         
+class Commment(models.Model):
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    video = models.ForeignKey(Video , on_delete=models.CASCADE)
+    comment = models.TextField(max_length=1000)
+    post_date = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.comment} on {self.video} by {self.user}'
 
 
 # def save_profile(sender, instance,created, **kwargs):

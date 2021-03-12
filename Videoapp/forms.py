@@ -1,5 +1,5 @@
 from django import forms
-from .models import Video
+from .models import Video, Commment
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -14,3 +14,8 @@ class VideoCreationForm(forms.ModelForm):
         helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
         helper.form_method = 'POST'
         
+class CommentCreationForm(forms.ModelForm):
+    comment = forms.CharField()
+    class Meta:
+        model = Commment
+        fields = ['comment']

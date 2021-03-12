@@ -17,7 +17,7 @@
             <div class="col-10">
                 <h3>{{video.name}}</h3>
                 <p>{{video.description}}</p>
-                <p>dd{{objectframes}}</p>
+                <p>{{objectframes}}</p>
             </div>
             {% if user.is_authenticated %}
             {% if request.user == video.user %}
@@ -29,6 +29,30 @@
             {% endif %}
 
         </div>
+    </div>
+    <div class="container text-white mx-auto py-5">
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                {{forms.as_table}}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        {% if comments %}
+        {% for comment in comments %}
+        <div class="card bg-dark my-3 w-80">
+            <div class="card-header text-white">
+                <div class="text-left">{{comment.user}}</div>
+                <div class="text-right">{{comment.post_date}}</div>
+            </div>
+            <div class="card-body bg-dark">
+                <div class="card-text text-white pl-3 text-left">
+                    {{comment.comment}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </section>
 <form method="POST" action="" class="text-right">
