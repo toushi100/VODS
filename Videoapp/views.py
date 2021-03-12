@@ -7,7 +7,6 @@ from .models import Video,VideoObject
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
-from django.contrib import messages
 import os ,json
 
 

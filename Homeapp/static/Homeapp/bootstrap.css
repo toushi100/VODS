@@ -10390,3 +10390,19 @@ body {
   color:white;
   text-decoration:none;
   }
+
+  .Notification{
+  visibility: hidden;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 8s;
+  animation-iteration-count: 1;
+  }
+
+  @keyframes example {
+  0%   { left:-250px; bottom:10px;visibility: visible;}
+  10%  { left:10px; bottom:10px;}
+ 
+  90%  { left:10px; bottom:10px;}
+  100% {left:-250px; bottom:10px; visibility: hidden;}
+  }
