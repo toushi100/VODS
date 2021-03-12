@@ -10203,15 +10203,13 @@ body {
 }
 
 .masthead {
-  position: relative;
   width: 100%;
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000000 100%);
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
   background-size: cover;
 }
 .masthead h1 {
@@ -10405,4 +10403,10 @@ body {
  
   90%  { left:10px; bottom:10px;}
   100% {left:-250px; bottom:10px; visibility: hidden;}
+  }
+
+  #particles-js{
+  
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
   }
