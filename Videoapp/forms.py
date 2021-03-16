@@ -16,6 +16,7 @@ class VideoCreationForm(forms.ModelForm):
         
 class CommentCreationForm(forms.ModelForm):
     comment = forms.CharField()
+    comment.widget.attrs.update({'class':''})
     class Meta:
         model = Commment
         fields = ['comment']

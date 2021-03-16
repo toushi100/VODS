@@ -77,9 +77,7 @@ class show(DetailView, View):
                 if forms.is_valid():
                     forms.instance.user = request.user
                     forms.instance.video = video
-                    print(forms.instance.comment)
                     forms.save()
-                    return HttpResponseRedirect(reverse_lazy(self.success_url))
-
+                    return self.get(request)
 
 

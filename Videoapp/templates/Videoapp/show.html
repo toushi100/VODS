@@ -32,10 +32,17 @@
     </div>
     <div class="container text-white mx-auto py-5">
         <div class="container">
-            <form method="post">
+            <form method="post" class="">
                 {% csrf_token %}
-                {{forms.as_table}}
-                <input type="submit" value="Submit">
+                <div class="form-row">
+                    <div class="form-group col-md-10 mb-0">
+                        {{forms | crispy }}
+                    </div>
+                    <div class="form-group col-md-2 mb-0">
+                        <input type="submit" class="btn btn-outline-info float-fight" value="Comment">
+                    </div>
+                </div>
+
             </form>
         </div>
         {% if comments %}
