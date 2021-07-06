@@ -1,5 +1,5 @@
 #!/home/ahmed/anaconda3/envs/Django/bin/python3.9
-#you have to add the path to your specific virtual environment 
+# ^ you have to add the path to your specific virtual environment ^
 import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
