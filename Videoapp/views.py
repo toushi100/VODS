@@ -7,6 +7,7 @@ from .models import Video,VideoObject, Commment
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.core import serializers
 import os ,json
 
 
@@ -41,7 +42,9 @@ class show(DetailView, View):
         video = Video.objects.get(pk=self.kwargs['pk'])
         comments = Commment.objects.filter(video = self.kwargs['pk'])
         forms = CommentCreationForm()
-        print(comments)
+        detected_objects = VideoObject.objects.get(
+            video =self.kwargs['pk'] )
+        
         context = {
             'video':video,
             'comments':comments,
@@ -67,7 +70,8 @@ class show(DetailView, View):
                     objectframes = frames_dict[word]
                     context = {
                         'video':video,
-                    'objectframes': objectframes
+                        'objectframes': objectframes,
+                        'word':word
                     }
                     return render(request, self.template_name, context)
 
@@ -79,5 +83,4 @@ class show(DetailView, View):
                     forms.instance.video = video
                     forms.save()
                     return self.get(request)
-
-
+                    

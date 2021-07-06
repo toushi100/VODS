@@ -1,10 +1,19 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
+
 {% load crispy_forms_tags %}
 <section class="about-section" id="about">
     <div class="container text-white mx-auto py-5">
-
+        <script>
+            
+                var some = '{{ word }}';
+                console.log('{{ objectframes }}');
+                function detect(){
+                    console.log("asssasasasasasasasas");
+                }
+            
+        </script>
 
         <div class="row mx-auto">
 
@@ -17,7 +26,21 @@
             <div class="col-10">
                 <h3>{{video.name}}</h3>
                 <p>{{video.description}}</p>
-                <p>{{objectframes}}</p>
+                <form method="POST" action="" class="py-5">
+                    {% csrf_token %}
+                    <div class="container h-100">
+                        <div class="d-flex justify-content-center h-100">
+                            <div class="searchbar">
+                                <input class="search_input" id="search" name="word" type="text" placeholder="Search..." />
+                                <input href="#" type="submit" name="search" class="search_icon"><i class="fas fa-search"></i></input>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="card">
+                    <div class="card-header bg-dark">The {{word}} appears in these times</div>
+                    <div class="card-body bg-dark" id="times"></div>
+                </div>
             </div>
             {% if user.is_authenticated %}
             {% if request.user == video.user %}
@@ -62,15 +85,5 @@
         {% endif %}
     </div>
 </section>
-<form method="POST" action="" class="text-right">
-    {% csrf_token %}
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-            <div class="searchbar">
-                <input class="search_input" id="search" name="word" type="text" placeholder="Search..." />
-                <input href="#" type="submit" name="search" class="search_icon"><i class="fas fa-search"></i></input>
-            </div>
-        </div>
-    </div>
-</form>
+
 {% endblock content %}

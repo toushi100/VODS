@@ -10402,7 +10402,7 @@ body {
   10%  { left:10px; bottom:10px;}
  
   90%  { left:10px; bottom:10px;}
-  100% {left:-250px; bottom:10px; visibility: hidden;}
+  100% {left:-550px; bottom:10px; visibility: hidden;}
   }
 
   #particles-js{

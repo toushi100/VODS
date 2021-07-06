@@ -139,3 +139,5 @@ LOGIN_URL = 'login'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+SSD =  os.path.join(BASE_DIR, "SSD")

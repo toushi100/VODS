@@ -3,17 +3,18 @@ from  django.contrib.auth.models import User
 import time, subprocess, pickle, json
 from embed_video.fields import EmbedVideoField 
 from django.db.models.signals import post_save
+from django.conf import settings
 
 
 
 
 def create_profile(sender,instance,created,**kwargs):
     if created:
-        path = '/home/ahmed/Desktop/VODS/filename.pickle'
+        path = settings.BASE_DIR/'new.pickle'
         video = instance.video
-        video = '/home/ahmed/Desktop/VODS/media/'+str(video)
+        video = settings.MEDIA_ROOT+ '/'+ str(video)
         print("detecting is starting")
-        output = subprocess.run(['/home/ahmed/Desktop/SSD/tagroba.py',video])
+        output = subprocess.run([settings.BASE_DIR/'SSD/tagroba.py',video])
         with open(path, 'rb') as handle:
             b = pickle.load(handle)
         b = json.dumps(b)
