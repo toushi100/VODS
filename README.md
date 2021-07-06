@@ -21,9 +21,12 @@ Installation :
 
 
 More info:
+
 after the user uploads a video a one time processing starts
 the video is passed to an object detection script.
+
 I used <a href = "https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1">openimages_v4/ssd/mobilenet_v2</a> model
-for more objects to be detected.
+for more objects to be detected, However, it is goind to be slow on a normal machine.
+
 the output of the detection script is saved in a .pickle file 
 then it is opened, converted into json and inserted in the DB
