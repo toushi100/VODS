@@ -1,5 +1,5 @@
 # VODS
-This is a website were the user can :
+<h1>This is a website were the user can :</h1>
 - Sign up / Sign in
 - Upload Videos
 - Delete their Videos
