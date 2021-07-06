@@ -9,5 +9,5 @@ This is a website were the user can :
 
 Installation :
  - git clone https://github.com/toushi100/VODS/
- - pip install requirements.txt
+ - pip install -r requirements.txt
  - change the path to your virtual environment in VODS/SSD/tagroba.py
