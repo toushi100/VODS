@@ -60,6 +60,7 @@ class show(DetailView, View):
                 video = get_object_or_404(Video, id=self.kwargs['pk'])
                 os.remove("/home/ahmed/Desktop/VODS/media/{}".format(video.video))
                 video.delete()
+                messages.warning(request, f'Your Video has been Deleted')
                 return HttpResponseRedirect(reverse_lazy(self.success_url))
 
             if  request.POST.get("search"):
