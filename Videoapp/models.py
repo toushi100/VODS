@@ -1,7 +1,6 @@
 from django.db import models
 from  django.contrib.auth.models import User
 import time, subprocess, pickle, json
-from embed_video.fields import EmbedVideoField 
 from django.db.models.signals import post_save
 from django.conf import settings
 
@@ -46,10 +45,7 @@ class VideoObject(models.Model):
     obj = models.JSONField(null = True)
 
 
-
-            
-class Item(models.Model):
-    video = EmbedVideoField()  # same like models.URLField()       
+  
         
 class Commment(models.Model):
     user = models.ForeignKey(User, on_delete= models.CASCADE)

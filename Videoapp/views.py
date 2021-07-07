@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .forms import VideoCreationForm,CommentCreationForm
-from .models import Video,VideoObject, Commment,Item
+from .models import Video,VideoObject, Commment
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
