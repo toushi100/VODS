@@ -1,8 +1,10 @@
 from django.contrib import admin
+from embed_video.admin import AdminVideoMixin
+from .models import Video, VideoObject, Commment,Item
+class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
+    pass
 
-# Register your models here.
-from .models import Video, VideoObject, Commment
-
+admin.site.register(Item, MyModelAdmin)
 admin.site.register(Video)
 admin.site.register(VideoObject)
 admin.site.register(Commment)

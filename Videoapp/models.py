@@ -19,6 +19,7 @@ def create_profile(sender,instance,created,**kwargs):
             b = pickle.load(handle)
         b = json.dumps(b)
         VideoObject.objects.create(video = instance ,obj = b)
+        Item.objects.create(video=instance.video.url)
     if not created:
         instance.Videobject.save()
 
@@ -44,12 +45,11 @@ class VideoObject(models.Model):
     video = models.ForeignKey(Video,on_delete=models.CASCADE)
     obj = models.JSONField(null = True)
 
-    def __str__(self):
-        return f'{self.video}'
 
 
             
-            
+class Item(models.Model):
+    video = EmbedVideoField()  # same like models.URLField()       
         
 class Commment(models.Model):
     user = models.ForeignKey(User, on_delete= models.CASCADE)

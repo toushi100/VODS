@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .forms import VideoCreationForm,CommentCreationForm
-from .models import Video,VideoObject, Commment
+from .models import Video,VideoObject, Commment,Item
 from django.views import View
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -48,7 +48,8 @@ class show(DetailView, View):
         context = {
             'video':video,
             'comments':comments,
-            'forms':forms
+            'forms':forms,
+            
         }
         return render(request, self.template_name,context)
 
@@ -68,10 +69,27 @@ class show(DetailView, View):
                     frames = videoObject[0].obj
                     frames_dict = json.loads(frames)
                     objectframes = frames_dict[word]
+                    times = [objectframes[0]]
+                    for index in range(len(objectframes)-1):
+                        
+                        if objectframes[index+1] - objectframes[index] == 0:
+                            continue
+                        elif objectframes[index+1] - objectframes[index] == 1:
+                            continue
+                        else:
+                            times.append(objectframes[index+1])
+                    final = []
+                    for i in times:
+                        seconds = (i / 30);
+                        total =  (i % 30)*0.0333;
+                        i = seconds+total;
+                        final.append(i)
+                    print(times)
                     context = {
                         'video':video,
                         'objectframes': objectframes,
-                        'word':word
+                        'word':word,
+                        'final':final
                     }
                     return render(request, self.template_name, context)
 

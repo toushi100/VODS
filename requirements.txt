@@ -7,3 +7,5 @@ django-embed-video==1.4.0
 django-jsonfield==1.4.1
 pillow == 8.2.0
 django-crispy-forms
+dj-static
+static-ranges

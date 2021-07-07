@@ -1,18 +1,18 @@
 {% extends 'Homeapp/base.html' %}
 {% load static %}
 {% block content %}
-
+{% load embed_video_tags %}
 {% load crispy_forms_tags %}
 <section class="about-section" id="about">
     <div class="container text-white mx-auto py-5">
         <script>
-            
-                var some = '{{ word }}';
-                console.log('{{ objectframes }}');
-                function detect(){
-                    console.log("asssasasasasasasasas");
-                }
-            
+
+            var some = '{{ word }}';
+            console.log('{{ objectframes }}');
+            function detect() {
+                console.log("asssasasasasasasasas");
+            }
+
         </script>
 
         <div class="row mx-auto">
@@ -21,6 +21,7 @@
                 <source src="{{video.video.url}}" type="video/mp4">
                 Your browser does not support the video tag
             </video>
+      
         </div>
         <div class="row text-white mt-5">
             <div class="col-10">
@@ -31,16 +32,26 @@
                     <div class="container h-100">
                         <div class="d-flex justify-content-center h-100">
                             <div class="searchbar">
-                                <input class="search_input" id="search" name="word" type="text" placeholder="Search..." />
-                                <input href="#" type="submit" name="search" class="search_icon"><i class="fas fa-search"></i></input>
+                                <input class="search_input" id="search" name="word" type="text"
+                                    placeholder="Search..." />
+                                <input href="#" type="submit" name="search" class="search_icon"><i
+                                    class="fas fa-search"></i></input>
                             </div>
                         </div>
                     </div>
                 </form>
+                {% if word %}
                 <div class="card">
                     <div class="card-header bg-dark">The {{word}} appears in these times</div>
-                    <div class="card-body bg-dark" id="times"></div>
+                    <div class="card-body bg-dark" id="times">
+                        <div class="card-text">
+                            {% for times in final %}
+                            <a href="#" onclick="setCurTime('{{times}}')" class="primary">{{times}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
+                {% endif %}
             </div>
             {% if user.is_authenticated %}
             {% if request.user == video.user %}
@@ -85,5 +96,10 @@
         {% endif %}
     </div>
 </section>
-
+<script>
+    function setCurTime(result) {
+        console.log(result);
+        document.getElementById("my-video").currentTime = result;
+    }
+</script>
 {% endblock content %}
