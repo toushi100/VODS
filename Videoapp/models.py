@@ -18,7 +18,6 @@ def create_profile(sender,instance,created,**kwargs):
             b = pickle.load(handle)
         b = json.dumps(b)
         VideoObject.objects.create(video = instance ,obj = b)
-        Item.objects.create(video=instance.video.url)
     if not created:
         instance.Videobject.save()
 
