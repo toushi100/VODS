@@ -39,7 +39,9 @@
                         </div>
                     </div>
                 </form>
+                {% if not messages %}
                 {% if word %}
+                
                 <div class="card">
                     <div class="card-header bg-dark">The {{word}} appears in these times</div>
                     <div class="card-body bg-dark" id="times">
@@ -51,6 +53,9 @@
                     </div>
                 </div>
                 {% endif %}
+                {% endif %}
+
+
             </div>
             {% if user.is_authenticated %}
             {% if request.user == video.user %}

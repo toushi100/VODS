@@ -11,6 +11,7 @@ from django.core import serializers
 import os ,json
 
 final = []
+
 @login_required
 def upload(request):
     if request.method == 'POST':
@@ -77,10 +78,9 @@ class show(DetailView, View):
                     try:
                         objectframes = frames_dict[word]
                     except KeyError:
-                        objectframes=[]
-                        print(objectframes)
+                        objectframes = []
                         err = messages.warning(request, f'The object you\'re looking for does not appear in the video \n :( ')
-                    if len(objectframes) is not  0:
+                    if len(objectframes) !=  0:
                         times = [objectframes[0]]
                         for index in range(len(objectframes)-1):
                             if objectframes[index+1] - objectframes[index] == 0:
@@ -99,7 +99,8 @@ class show(DetailView, View):
                         'video':video,
                         'objectframes': objectframes,
                         'word':word,
-                        'final':final
+                        'final':final,
+                     
                     }
                     return render(request, self.template_name, context)
 
