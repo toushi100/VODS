@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "Videoapp",
     "Usersapp",
     "crispy_forms",
-    'embed_video'
+
 ]
 
 MIDDLEWARE = [
