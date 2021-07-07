@@ -10391,7 +10391,7 @@ body {
 
   .Notification{
   visibility: hidden;
-  position: absolute;
+  position: fixed;
   animation-name: example;
   animation-duration: 8s;
   animation-iteration-count: 1;

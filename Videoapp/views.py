@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.core import serializers
 import os ,json
 
-
+final = []
 @login_required
 def upload(request):
     if request.method == 'POST':
@@ -64,27 +64,37 @@ class show(DetailView, View):
             if  request.POST.get("search"):
                 if  request.POST.get("word"):
                     word = request.POST.get("word")
+                    word  = word.capitalize()
+                    for i, x in enumerate(word):
+                        if x == ' ':
+                            word = word[:i]
+                            break
+                   
                     video = get_object_or_404(Video, id=self.kwargs['pk'])
                     videoObject = VideoObject.objects.filter(video = video)
                     frames = videoObject[0].obj
                     frames_dict = json.loads(frames)
-                    objectframes = frames_dict[word]
-                    times = [objectframes[0]]
-                    for index in range(len(objectframes)-1):
+                    try:
+                        objectframes = frames_dict[word]
+                    except KeyError:
+                        objectframes=[]
+                        print(objectframes)
+                        err = messages.warning(request, f'The object you\'re looking for does not appear in the video \n :( ')
+                    if len(objectframes) is not  0:
+                        times = [objectframes[0]]
+                        for index in range(len(objectframes)-1):
+                            if objectframes[index+1] - objectframes[index] == 0:
+                                continue
+                            elif objectframes[index+1] - objectframes[index] == 1:
+                                continue
+                            else:
+                                times.append(objectframes[index+1])
                         
-                        if objectframes[index+1] - objectframes[index] == 0:
-                            continue
-                        elif objectframes[index+1] - objectframes[index] == 1:
-                            continue
-                        else:
-                            times.append(objectframes[index+1])
-                    final = []
-                    for i in times:
-                        seconds = (i / 30);
-                        total =  (i % 30)*0.0333;
-                        i = seconds+total;
-                        final.append(i)
-                    print(times)
+                        for i in times:
+                            seconds = (i / 30);
+                            total =  (i % 30)*0.0333;
+                            i = seconds+total;
+                            final.append(i)
                     context = {
                         'video':video,
                         'objectframes': objectframes,
